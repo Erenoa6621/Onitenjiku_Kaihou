@@ -24,8 +24,6 @@ public class EnemyAttack : MonoBehaviour
 
 	void Update()
 	{
-
-
 		acceleration = Vector3.zero;
 		var diff = player.transform.position - transform.position;
 		acceleration += (diff - velocity * period) * 2f / (period * period);
@@ -48,12 +46,14 @@ public class EnemyAttack : MonoBehaviour
 		{
 			transform.position = transform.position;
 		}
+		Destroy(this.gameObject, 5);
+		
 	}
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.tag == "Player")
 		{
-			Destroy(this.gameObject,5);
+			Destroy(this.gameObject,3);
 			check = true;
 		}
 		if (other.gameObject.tag == "Weapon")
