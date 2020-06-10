@@ -40,6 +40,9 @@ public class Enemy : MonoBehaviour
                 enemyAni.SetTrigger("EnemyAttck");
             }
         }
-
+        if (other.gameObject.tag == "beem")
+        {
+            enemyAni.SetTrigger("EnemyAttck");
+        }
     }
 }

@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Block
   - Weapon
+  - Deathblow
+  - beem
   layers:
   - Default
   - TransparentFX
