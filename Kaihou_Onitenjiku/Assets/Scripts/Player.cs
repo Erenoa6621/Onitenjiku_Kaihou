@@ -9,72 +9,99 @@ public class Player : MonoBehaviour
     [SerializeField] float playerSpeed;
     [SerializeField] float damegiSpeed;
     [SerializeField] float junpSpeed;
-    public GameObject enemy;
+    public GameObject enemyCon;
     public GameObject player;
     public GameObject block;
-   
+    public bool blur;
     private Rigidbody rb;
     public bool junpCheck;
     public float nowSpeed;
-    private bool enemyDamege;
+    public bool enemyDamege;
     private bool blockDamege;
-   
+    public bool accel;
+
 
     void Start()
     {
         rb = player.GetComponent<Rigidbody>();
+        nowSpeed = playerSpeed;
+        blur = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        enemyDamege = enemy.GetComponent<Enemy>().damegi;
+        enemyDamege = enemyCon.GetComponent<EnemyCon>().playerDamede;
         blockDamege = block.GetComponent<Enemy>().damegi;
-      
+        accel = enemyCon.GetComponent<EnemyCon>().playeraccel;
 
-        if (enemyDamege == false && blockDamege == false )
+    
+        if (enemyDamege == true || blockDamege == true)
         {
-            transform.position += transform.right * playerSpeed * Time.deltaTime;
-            nowSpeed = playerSpeed;
+            nowSpeed = damegiSpeed;        
         }
-        else if (enemyDamege == true || blockDamege == true)
+        if (nowSpeed < 5)
         {
-            transform.position += transform.right * damegiSpeed * Time.deltaTime;
-            nowSpeed = damegiSpeed;
+            nowSpeed = 5;
+           
         }
+
+     
+
+        nowSpeed -= 0.5f * Time.deltaTime;
+        transform.position += transform.right * nowSpeed * Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && junpCheck == true)
         {
             rb.AddForce(0, junpSpeed, 0);
             junpCheck = false;
         }
+        if (accel == true)
+        {
+            nowSpeed += 1;
+        }
+
+        if (nowSpeed > 20)
+        {
+            blur = true;
+        }
+        else
+        {
+            blur = false;
+        }
     }
     void OnCollisionEnter(Collision other)
     {
+      
         if (other.gameObject.tag == "Stage")
         {
             junpCheck = true;
         }
 
     }
-  /*  void movePlayer()
+    private void OnCollisionExit(Collision other)
     {
-        if (playerDamege == false)
-        {
-            transform.position += transform.right * playerSpeed * Time.deltaTime;
-            nowSpeed = playerSpeed;
-        }
-        else if (playerDamege == true)
-        {
-            transform.position += transform.right * damegiSpeed * Time.deltaTime;
-            nowSpeed = damegiSpeed;
-        }
+        enemyDamege = false;
+        blockDamege = false;
+    }
+    /*  void movePlayer()
+      {
+          if (playerDamege == false)
+          {
+              transform.position += transform.right * playerSpeed * Time.deltaTime;
+              nowSpeed = playerSpeed;
+          }
+          else if (playerDamege == true)
+          {
+              transform.position += transform.right * damegiSpeed * Time.deltaTime;
+              nowSpeed = damegiSpeed;
+          }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && junpCheck == true)
-        {
-            rb.AddForce(0, junpSpeed, 0);
-            junpCheck = false;
-        }
+          if (Input.GetKeyDown(KeyCode.UpArrow) && junpCheck == true)
+          {
+              rb.AddForce(0, junpSpeed, 0);
+              junpCheck = false;
+          }
 
-    }*/
+      }*/
 }

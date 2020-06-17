@@ -4777,11 +4777,14 @@ MonoBehaviour:
   playerSpeed: 10
   damegiSpeed: 3
   junpSpeed: 520
-  enemy: {fileID: 0}
+  enemyCon: {fileID: 0}
   player: {fileID: 3050576401423976302}
   block: {fileID: 0}
+  blur: 0
   junpCheck: 0
   nowSpeed: 0
+  enemyDamege: 0
+  accel: 0
 --- !u!54 &3050576401423976298
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4914,6 +4917,7 @@ GameObject:
   - component: {fileID: 3050576402163276460}
   - component: {fileID: 3050576402163276461}
   - component: {fileID: 3050576402163276466}
+  - component: {fileID: 7544618756316594705}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4985,6 +4989,22 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3050576402163276467}
   m_Enabled: 1
+--- !u!114 &7544618756316594705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3050576402163276467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8891a42d1c5202a4cb7c5494c1d924dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blurAmount: 0.8
+  extraBlur: 0
+  curShader: {fileID: 4800000, guid: d8fdd5bea013012429ef8f4601e6f736, type: 3}
+  movePlayer: {fileID: 0}
 --- !u!95 &990149621924726423
 Animator:
   serializedVersion: 3

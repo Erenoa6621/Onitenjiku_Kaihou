@@ -6,12 +6,15 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] int damegeTime;
     public bool damegi;
+    public bool accel;
     private int time;
     public Animator enemyAni;
+    private Collider col;
     // Start is called before the first frame update
     void Start()
     {
         damegi = false;
+        col = this.gameObject.GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -38,11 +41,27 @@ public class Enemy : MonoBehaviour
             if (Input.GetKey(KeyCode.A))
             {
                 enemyAni.SetTrigger("EnemyAttck");
+                accel = true;
+                // Destroy(col);
             }
+        }
+        else 
+        {
+            accel = false;
         }
         if (other.gameObject.tag == "beem")
         {
             enemyAni.SetTrigger("EnemyAttck");
+        }
+       
+        
+        
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Weapon")
+        {
+            accel = false;
         }
     }
 }
