@@ -45,13 +45,17 @@ public class Player : MonoBehaviour
             nowSpeed = 5;
            
         }
+        if (nowSpeed > 20)
+        {
+            nowSpeed = 20;
+        }
 
      
 
         nowSpeed -= 0.5f * Time.deltaTime;
         transform.position += transform.right * nowSpeed * Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) && junpCheck == true)
+        if (Input.GetKeyDown(KeyCode.Space) && junpCheck == true)
         {
             rb.AddForce(0, junpSpeed, 0);
             junpCheck = false;
@@ -61,7 +65,7 @@ public class Player : MonoBehaviour
             nowSpeed += 1;
         }
 
-        if (nowSpeed > 20)
+        if (nowSpeed > 18)
         {
             blur = true;
         }

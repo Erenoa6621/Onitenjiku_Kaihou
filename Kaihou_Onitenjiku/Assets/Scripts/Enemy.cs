@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     private int time;
     public Animator enemyAni;
     private Collider col;
+  //  public bool cameraIn;
     // Start is called before the first frame update
     void Start()
     {
@@ -64,4 +65,12 @@ public class Enemy : MonoBehaviour
             accel = false;
         }
     }
+   /* private void OnWillRenderObject()
+    {
+        if (Camera.current.name == "MainCamera")
+        {
+            cameraIn = true;
+        }
+    }*/
+
 }
