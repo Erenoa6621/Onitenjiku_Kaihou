@@ -19,8 +19,12 @@ public class Player : MonoBehaviour
     public bool enemyDamege;
     private bool blockDamege;
     public bool accel;
-
-
+    public Animator playerAni;
+    public bool missileDamege;
+    public bool missileCounter;
+    public bool ult;
+    private bool BossStart;
+    public GameObject bossSrtartTriger;
     void Start()
     {
         rb = player.GetComponent<Rigidbody>();
@@ -34,7 +38,7 @@ public class Player : MonoBehaviour
         enemyDamege = enemyCon.GetComponent<EnemyCon>().playerDamede;
         blockDamege = block.GetComponent<Enemy>().damegi;
         accel = enemyCon.GetComponent<EnemyCon>().playeraccel;
-
+        BossStart = bossSrtartTriger.GetComponent<BossStartTrigger>().bossStart;
     
         if (enemyDamege == true || blockDamege == true)
         {
@@ -54,7 +58,7 @@ public class Player : MonoBehaviour
 
         nowSpeed -= 0.5f * Time.deltaTime;
         transform.position += transform.right * nowSpeed * Time.deltaTime;
-
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
         if (Input.GetKeyDown(KeyCode.Space) && junpCheck == true)
         {
             rb.AddForce(0, junpSpeed, 0);
@@ -68,10 +72,25 @@ public class Player : MonoBehaviour
         if (nowSpeed > 18)
         {
             blur = true;
+            
         }
         else
         {
             blur = false;
+        }
+
+        if (BossStart == true && nowSpeed > 18 && Input.GetKey(KeyCode.S))
+        {
+            ult = true;
+            nowSpeed = 10;
+        }
+        else 
+        {
+            ult = false;
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            playerAni.SetTrigger("Atack");
         }
     }
     void OnCollisionEnter(Collision other)
@@ -82,12 +101,40 @@ public class Player : MonoBehaviour
             junpCheck = true;
         }
 
+        if (other.gameObject.tag == "beem")
+        {
+            nowSpeed = 15;
+            Destroy(other.gameObject);
+        }
+        else
+        {
+            missileDamege = false;
+        }
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "beem")
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                missileCounter = true;
+                nowSpeed += 1;
+                Destroy(other.gameObject);
+            }
+          
+        }
+        else
+        {
+            missileCounter = false;
+        }
     }
     private void OnCollisionExit(Collision other)
     {
         enemyDamege = false;
         blockDamege = false;
     }
+   
     /*  void movePlayer()
       {
           if (playerDamege == false)

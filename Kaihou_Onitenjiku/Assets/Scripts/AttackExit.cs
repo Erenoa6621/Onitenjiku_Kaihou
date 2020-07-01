@@ -8,6 +8,8 @@ public class AttackExit : MonoBehaviour
     public GameObject Attack;
     private bool bossVs;
     public GameObject vsStart;
+    public bool trigger;
+    public GameObject Boss;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +20,12 @@ public class AttackExit : MonoBehaviour
     void Update()
     {
         bossVs = vsStart.GetComponent<BossStartTrigger>().bossStart;
-        int randomCount = Random.Range(1, randomCountMax);
+        trigger = Boss.GetComponent<MoveBoss>().fire;
+       
 
         if (bossVs == true)
         {
-            if (randomCount == 1)
+            if (trigger == true)
             {
                 Instantiate(Attack, this.gameObject.transform.position, Quaternion.identity);
             }
