@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
             if (Input.GetKey(KeyCode.A))
             {
                 missileCounter = true;
-                nowSpeed += 5;
+                nowSpeed += 3;
                 Destroy(other.gameObject);
             }
           

@@ -10,6 +10,8 @@ public class AttackExit : MonoBehaviour
     public GameObject vsStart;
     public bool trigger;
     public GameObject Boss;
+    public int count;
+    private bool lag;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +29,16 @@ public class AttackExit : MonoBehaviour
         {
             if (trigger == true)
             {
+                lag = true;
+            }
+        }
+        if (lag == true)
+        {
+            count++;
+            if (count == 25)
+            {
+                lag = false;
+                count = 0;
                 Instantiate(Attack, this.gameObject.transform.position, Quaternion.identity);
             }
         }

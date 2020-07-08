@@ -14,7 +14,7 @@ public class UltImage : MonoBehaviour
 
     void Start()
     {
-        
+        Slider.color = new Color(255, 0, 0, 0);
     }
 
     // Update is called once per frame
@@ -25,11 +25,11 @@ public class UltImage : MonoBehaviour
 
         if (bulercheck == true && bossVS == true)
         {
-            //Slider.color = new Color(255, 0, 0, 255);
+            Slider.color = new Color(255, 0, 0, 255);
         }
         else
         {
-          //  Slider.color = new Color(255, 0, 0, 0);
+            Slider.color = new Color(255, 0, 0, 0);
         }
     }
 }

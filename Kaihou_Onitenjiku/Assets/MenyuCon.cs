@@ -9,25 +9,32 @@ public class MenyuCon : MonoBehaviour
     public Text push;
     public Animator Ani;
     private bool check;
+    public AudioClip Enter;
+    public AudioClip Exit;
+
+    AudioSource audioSource;
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (check == false)
             {
                 check = true;
                 Ani.SetTrigger("Entry");
+                audioSource.PlayOneShot(Enter);
+               
             }
             else
             {
                 check = false;
                 Ani.SetTrigger("Exit");
+                audioSource.PlayOneShot(Exit);
             }
         }
 
@@ -41,7 +48,10 @@ public class MenyuCon : MonoBehaviour
 
         }
 
-
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
       
         
     }
