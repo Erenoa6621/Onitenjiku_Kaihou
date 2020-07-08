@@ -8,10 +8,13 @@ public class MoveBoss : MonoBehaviour
     public Vector3 pos;
     public GameObject playerPos;
     public GameObject mainPlayer;
+    public Animator bossAni;
     private float speed;
     public bool Slash;
     public bool fire;
     public int randomCountMax;
+    private int countdouwn = 0;
+    private bool countdouwnTrigger;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,18 +32,36 @@ public class MoveBoss : MonoBehaviour
         {
             transform.position = new Vector3(playerPos.transform.position.x + speed * Time.deltaTime, pos.y, pos.z);
         }
-        if (randomCount == 1)
+
+        if (countdouwnTrigger == false)
         {
-            fire = true;
+            if (randomCount == 1)
+            {
+                fire = true;
+                countdouwnTrigger = true;
+                bossAni.SetTrigger("Atack2");
+            }
+            else if (randomCount == 2)
+            {
+                countdouwnTrigger = true;
+                Slash = true;
+            }
+            else
+            {
+                fire = false;
+                Slash = false;
+            }
         }
-        else if (randomCount == 2)
-        {
-            Slash = true;
-        }
-        else
+        else 
         {
             fire = false;
             Slash = false;
+            countdouwn++;
+            if (countdouwn == 60)
+            {
+                countdouwn = 0;
+                countdouwnTrigger = false;
+            }
         }
 
     }

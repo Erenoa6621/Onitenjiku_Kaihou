@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] float playerSpeed;
     [SerializeField] float damegiSpeed;
     [SerializeField] float junpSpeed;
+    public GameObject playerPos;
     public GameObject enemyCon;
     public GameObject player;
     public GameObject block;
@@ -56,17 +57,17 @@ public class Player : MonoBehaviour
 
      
 
-        nowSpeed -= 0.5f * Time.deltaTime;
+        nowSpeed -= 0.3f * Time.deltaTime;
         transform.position += transform.right * nowSpeed * Time.deltaTime;
         transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
         if (Input.GetKeyDown(KeyCode.Space) && junpCheck == true)
         {
-            rb.AddForce(0, junpSpeed, 0);
+            rb.velocity = new Vector3(0.0f, junpSpeed, 0.0f);
             junpCheck = false;
         }
         if (accel == true)
         {
-            nowSpeed += 1;
+            nowSpeed += 2;
         }
 
         if (nowSpeed > 18)
@@ -103,7 +104,8 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.tag == "beem")
         {
-            nowSpeed = 15;
+            nowSpeed = 10;
+            transform.position = playerPos.transform.position;
             Destroy(other.gameObject);
         }
         else
@@ -119,7 +121,7 @@ public class Player : MonoBehaviour
             if (Input.GetKey(KeyCode.A))
             {
                 missileCounter = true;
-                nowSpeed += 1;
+                nowSpeed += 5;
                 Destroy(other.gameObject);
             }
           

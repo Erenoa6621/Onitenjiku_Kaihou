@@ -37,6 +37,7 @@ public class BossLife : MonoBehaviour
             SceneManager.LoadScene("Clear");
         }
     }
+
     void OntriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Counter")
