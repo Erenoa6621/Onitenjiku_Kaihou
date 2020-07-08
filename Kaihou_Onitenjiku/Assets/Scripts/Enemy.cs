@@ -10,12 +10,14 @@ public class Enemy : MonoBehaviour
     private int time;
     public Animator enemyAni;
     private Collider col;
+    private AudioSource audioSource;
   //  public bool cameraIn;
     // Start is called before the first frame update
     void Start()
     {
         damegi = false;
         col = this.gameObject.GetComponent<Collider>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -28,6 +30,10 @@ public class Enemy : MonoBehaviour
             {
                 damegi = false;
                 time = 0;
+            }
+            if (time == 0)
+            {
+                //audioSource.Play();
             }
         }
     }
@@ -42,6 +48,7 @@ public class Enemy : MonoBehaviour
             if (Input.GetKey(KeyCode.A))
             {
                 enemyAni.SetTrigger("EnemyAttck");
+                audioSource.Play();
                 accel = true;
                 // Destroy(col);
             }

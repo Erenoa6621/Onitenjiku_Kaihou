@@ -10,9 +10,11 @@ public class EnemyAttack : MonoBehaviour
 	private Vector3 acceleration;
 	public GameObject player;
 	private bool check;
-	float period = 2f;
-	public Animation ani;
-
+	float period = 3f;
+	public bool backTrigger;
+	private Vector3 backVec;
+	private bool damege;
+	private bool counter;
 	void Start()
 	{
 		check = false;
@@ -26,19 +28,29 @@ public class EnemyAttack : MonoBehaviour
 	{
 		acceleration = Vector3.zero;
 		var diff = player.transform.position - transform.position;
-		acceleration += (diff - velocity * period) * 2f / (period * period);
-
-		if (acceleration.magnitude > 100f)
-		{
-			acceleration = acceleration.normalized * 100f;
-		}
+		acceleration += (diff - velocity * period) * 1f / (period * period);
 		period -= Time.deltaTime;
 		velocity += acceleration * Time.deltaTime;
+		backTrigger = false;
+		damege = player.GetComponent<Player>().missileDamege;
+		counter = player.GetComponent<Player>().missileCounter;
+
+		if (damege == true)
+		{
+			Destroy(this.gameObject);
+			check = true;
+		}
+		if (counter == true)
+		{
+			backVec = rigid.velocity;
+			backTrigger = true;
+			rigid.velocity = Vector3.zero;
+		}
 	}
 
 	void FixedUpdate()
 	{
-		if (check == false)
+		if (check == false && backTrigger == false)
 		{
 			rigid.MovePosition(transform.position + velocity * Time.deltaTime);
 		}
@@ -46,22 +58,32 @@ public class EnemyAttack : MonoBehaviour
 		{
 			transform.position = transform.position;
 		}
+		else if (backTrigger == true)
+		{
+			rigid.velocity = -1f * backVec;
+		}
 		Destroy(this.gameObject, 5);
 		
 	}
-	void OnTriggerEnter(Collider other)
+/*	void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.tag == "Player")
-		{
-			Destroy(this.gameObject,3);
-			check = true;
-		}
+		
 		if (other.gameObject.tag == "Weapon")
 		{
 			if (Input.GetKey(KeyCode.A))
 			{
-				Destroy(this.gameObject);
+				backVec = rigid.velocity;
+				backTrigger = true;
+				rigid.velocity = Vector3.zero;
 			}
 		}
 	}
+	private void OnCollisionEnter(Collision other)
+	{
+		if (other.gameObject.tag == "Player")
+		{
+			Destroy(this.gameObject);
+			check = true;
+		}
+	}*/
 }

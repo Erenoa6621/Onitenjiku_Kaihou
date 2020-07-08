@@ -35,6 +35,10 @@ public class TimeManager : MonoBehaviour
 		{
 			timerText.text = minute.ToString("00") + ":" + ((int)seconds).ToString("00");
 		}
+		PlayerPrefs.SetFloat("Minute", minute);
+		PlayerPrefs.Save();
+		PlayerPrefs.SetFloat("Second", seconds);
+		PlayerPrefs.Save();
 		oldSeconds = seconds;
 	}
 }

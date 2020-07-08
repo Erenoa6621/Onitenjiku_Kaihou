@@ -11,9 +11,10 @@ public class EnemyCon : MonoBehaviour
     public bool playerDamede;
     private  bool accel;
     public bool playeraccel;
+    AudioSource audioSource;
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -32,6 +33,7 @@ public class EnemyCon : MonoBehaviour
             if (damege == true)
             {
                 playerDamede = true;
+                audioSource.Play();
             }
             if (accel == true)
             {

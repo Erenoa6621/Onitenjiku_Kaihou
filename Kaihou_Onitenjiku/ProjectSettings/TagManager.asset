@@ -10,6 +10,7 @@ TagManager:
   - Weapon
   - Deathblow
   - beem
+  - Counter
   layers:
   - Default
   - TransparentFX

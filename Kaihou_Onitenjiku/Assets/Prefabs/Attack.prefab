@@ -14,10 +14,9 @@ GameObject:
   - component: {fileID: 7639679009770868517}
   - component: {fileID: 7639679009770868505}
   - component: {fileID: 7639679009770868518}
-  - component: {fileID: 7639679009770868511}
   m_Layer: 0
   m_Name: Attack
-  m_TagString: Enemy
+  m_TagString: beem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,7 +88,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7639679009770868519}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -122,20 +121,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c5d5070308b8f4ebb5b3457645ddbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3050576401423976302, guid: ea54bcbbd4708e04b8e5cfd3b9084005, type: 3}
-  ani: {fileID: 0}
---- !u!114 &7639679009770868511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7639679009770868519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d688aee694fcba344a1bfd7680b9cb5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damegeTime: 2
-  damegi: 0
-  enemyAni: {fileID: 0}
+  player: {fileID: 754483931133608416, guid: ea54bcbbd4708e04b8e5cfd3b9084005, type: 3}
+  backTrigger: 0
