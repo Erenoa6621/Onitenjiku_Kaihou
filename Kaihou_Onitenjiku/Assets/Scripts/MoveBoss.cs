@@ -45,6 +45,7 @@ public class MoveBoss : MonoBehaviour
             {
                 countdouwnTrigger = true;
                 Slash = true;
+                bossAni.SetTrigger("Atack1");
             }
             else
             {

@@ -12,6 +12,8 @@ public class BossLife : MonoBehaviour
     public Slider Meter;
     public GameObject Player;
     private bool ultDmegi;
+    public GameObject damegi;
+    private bool nomalDamege;
     void Start()
     {
         nowBossLife = bossMaxLife;
@@ -26,6 +28,7 @@ public class BossLife : MonoBehaviour
     void Update()
     {
         ultDmegi = Player.GetComponent<Player>().ult;
+        nomalDamege = damegi.GetComponent<OutCounter>().Atack;
        
         if (ultDmegi == true)
         {
@@ -36,13 +39,17 @@ public class BossLife : MonoBehaviour
         {
             SceneManager.LoadScene("Clear");
         }
+        if (nomalDamege == true)
+        {
+            nowBossLife -= 10;
+        }
     }
 
     void OntriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Counter")
         {
-            nowBossLife -= 10;
+           
             Destroy(other.gameObject);
         }
     }

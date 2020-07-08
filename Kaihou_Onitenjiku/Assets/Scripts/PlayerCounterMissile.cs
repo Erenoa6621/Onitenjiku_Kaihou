@@ -34,7 +34,7 @@ public class PlayerCounterMissile : MonoBehaviour
     void FixedUpdate()
     {
       //   rigid.MovePosition(transform.position + velocity * Time.deltaTime);
-        transform.position += transform.right * 25f * Time.deltaTime;
+        transform.position += transform.right * 30f * Time.deltaTime;
        // rigid.AddForce(new Vector3(0.0f, 0.5f, 0.0f));
     }
 }

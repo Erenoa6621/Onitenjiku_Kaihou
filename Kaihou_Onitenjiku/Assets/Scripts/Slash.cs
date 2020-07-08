@@ -13,6 +13,7 @@ public class Slash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.position += transform.right * -10f * Time.deltaTime;
+        Destroy(gameObject, 10);
     }
 }

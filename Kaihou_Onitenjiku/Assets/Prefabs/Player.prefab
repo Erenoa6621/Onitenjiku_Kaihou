@@ -166,6 +166,7 @@ MonoBehaviour:
   playerSpeed: 10
   damegiSpeed: 3
   junpSpeed: 1000
+  playerPos: {fileID: 0}
   enemyCon: {fileID: 0}
   player: {fileID: 754483931133608416}
   block: {fileID: 6489003491649923504, guid: f9d1b756a5eda2248beb25ed4e4f4047, type: 3}
@@ -179,6 +180,7 @@ MonoBehaviour:
   missileCounter: 0
   ult: 0
   bossSrtartTriger: {fileID: 0}
+  BlockCon: {fileID: 0}
 --- !u!54 &754483931133608420
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -262,6 +264,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1640489289791933216}
+  - component: {fileID: 5214296729281391131}
   m_Layer: 0
   m_Name: CameraPos
   m_TagString: Untagged
@@ -283,6 +286,18 @@ Transform:
   m_Father: {fileID: 754483931133608422}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5214296729281391131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2626010243627318290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2cbe6bd89ef0840a7fe25b0bc4abed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4207908213773583249
 GameObject:
   m_ObjectHideFlags: 0
@@ -5040,6 +5055,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 754483931133608416}
   Count: {fileID: 5786075910442234107, guid: 0730f35381982f841b14ecc7371595f2, type: 3}
+  Atack: 0
 --- !u!95 &3283146004931199001
 Animator:
   serializedVersion: 3

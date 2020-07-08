@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public bool ult;
     private bool BossStart;
     public GameObject bossSrtartTriger;
+    public GameObject BlockCon;
     void Start()
     {
         rb = player.GetComponent<Rigidbody>();
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
         blockDamege = block.GetComponent<Enemy>().damegi;
         accel = enemyCon.GetComponent<EnemyCon>().playeraccel;
         BossStart = bossSrtartTriger.GetComponent<BossStartTrigger>().bossStart;
+        blockDamege = BlockCon.GetComponent<BlockCon>().playerDamede;
     
         if (enemyDamege == true || blockDamege == true)
         {

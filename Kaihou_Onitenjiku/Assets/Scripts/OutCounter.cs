@@ -6,7 +6,7 @@ public class OutCounter : MonoBehaviour
 {
     public GameObject Player;
     public GameObject Count;
-    private bool Atack;
+    public bool Atack;
     // Start is called before the first frame update
     void Start()
     {

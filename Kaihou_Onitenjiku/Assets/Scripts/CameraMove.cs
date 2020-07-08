@@ -28,7 +28,7 @@ public class CameraMove : MonoBehaviour
             moveSpeed += 0.1f * Time.deltaTime;
             if (moveSpeed > 8.0f)
             {
-                moveSpeed = 8;
+                moveSpeed = 8.0f;
             }
         }
         else if (speedTrigger == true)
