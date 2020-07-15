@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     private bool BossStart;
     public GameObject bossSrtartTriger;
     public GameObject BlockCon;
+    private int junpCount;
+    public GameObject Kuronoa;
     void Start()
     {
         rb = player.GetComponent<Rigidbody>();
@@ -45,7 +47,8 @@ public class Player : MonoBehaviour
     
         if (enemyDamege == true || blockDamege == true)
         {
-            nowSpeed = damegiSpeed;        
+            nowSpeed = damegiSpeed;
+            playerAni.SetTrigger("Damege");
         }
         if (nowSpeed < 5)
         {
@@ -65,6 +68,8 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && junpCheck == true)
         {
             rb.velocity = new Vector3(0.0f, junpSpeed, 0.0f);
+            playerAni.SetTrigger("Junp");
+            playerAni.SetBool("JunpEnd", false);
             junpCheck = false;
         }
         if (accel == true)
@@ -75,21 +80,28 @@ public class Player : MonoBehaviour
         if (nowSpeed > 18)
         {
             blur = true;
-            
+            Kuronoa.gameObject.SetActive(true);
+
         }
         else
         {
             blur = false;
+            Kuronoa.gameObject.SetActive(false);
         }
+        
+
+
 
         if (BossStart == true && nowSpeed > 18 && Input.GetKey(KeyCode.S))
         {
             ult = true;
+          
             nowSpeed = 10;
         }
         else 
         {
             ult = false;
+           
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -102,13 +114,16 @@ public class Player : MonoBehaviour
         if (other.gameObject.tag == "Stage")
         {
             junpCheck = true;
+
+            playerAni.SetBool("JunpEnd",true);
         }
 
         if (other.gameObject.tag == "beem")
         {
             nowSpeed = 10;
-            transform.position = playerPos.transform.position;
+            transform.position = new Vector3(transform.position.x,transform.position.y,playerPos.transform.position.z);// playerPos.transform.position;
             Destroy(other.gameObject);
+            playerAni.SetTrigger("Damege");
         }
         else
         {

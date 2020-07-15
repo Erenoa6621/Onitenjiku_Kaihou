@@ -264,4 +264,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floor: {fileID: 7681533126658238400}
+  subFloor: {fileID: 5567851910041998141, guid: 5e17682698b15a548ae33adc5c7c92bc,
+    type: 3}
+  PlayerPos: {fileID: 0}
+  BossAni: {fileID: 0}
   check: 0
