@@ -37,7 +37,7 @@ public class BossLife : MonoBehaviour
         Meter.value = nowBossLife;
         if (nowBossLife < 0)
         {
-            SceneManager.LoadScene("Clear");
+            SceneManager.LoadScene("StageSelect");
         }
         if (nomalDamege == true)
         {

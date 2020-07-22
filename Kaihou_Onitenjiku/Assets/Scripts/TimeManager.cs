@@ -13,7 +13,8 @@ public class TimeManager : MonoBehaviour
 	private float oldSeconds;
 	//　タイマー表示用テキスト
 	private Text timerText;
-
+	private bool Pouse;
+	public GameObject PCon;
 	void Start()
 	{
 		minute = 0;
@@ -24,21 +25,25 @@ public class TimeManager : MonoBehaviour
 
 	void Update()
 	{
-		seconds += Time.deltaTime;
-		if (seconds >= 60f)
+		Pouse = PCon.GetComponent<PouseCon>().Pouse;
+		if (Pouse == false)
 		{
-			minute++;
-			seconds = seconds - 60;
+			seconds += Time.deltaTime;
+			if (seconds >= 60f)
+			{
+				minute++;
+				seconds = seconds - 60;
+			}
+			//　値が変わった時だけテキストUIを更新
+			if ((int)seconds != (int)oldSeconds)
+			{
+				timerText.text = minute.ToString("00") + ":" + ((int)seconds).ToString("00");
+			}
+			PlayerPrefs.SetFloat("Minute", minute);
+			PlayerPrefs.Save();
+			PlayerPrefs.SetFloat("Second", seconds);
+			PlayerPrefs.Save();
+			oldSeconds = seconds;
 		}
-		//　値が変わった時だけテキストUIを更新
-		if ((int)seconds != (int)oldSeconds)
-		{
-			timerText.text = minute.ToString("00") + ":" + ((int)seconds).ToString("00");
-		}
-		PlayerPrefs.SetFloat("Minute", minute);
-		PlayerPrefs.Save();
-		PlayerPrefs.SetFloat("Second", seconds);
-		PlayerPrefs.Save();
-		oldSeconds = seconds;
 	}
 }

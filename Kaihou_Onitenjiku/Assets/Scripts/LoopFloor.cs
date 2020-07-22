@@ -15,11 +15,14 @@ public class LoopFloor : MonoBehaviour
     private int counter; 
     public bool check;
     private bool counterCheck;
+    public GameObject Meadow;
+    private float width;
     // Start is called before the first frame update
     void Start()
     {
         nowPos = this.gameObject.transform.position;
-        newPos = new Vector3(nowPos.x + 30, nowPos.y, nowPos.z);
+        width = Meadow.GetComponent<SpriteRenderer>().bounds.size.x;
+        newPos = new Vector3(nowPos.x + width, nowPos.y, nowPos.z);
         cossCheck = PlayerPos.GetComponent<BossStartTrigger>().bossStart;
     }
 
@@ -39,7 +42,7 @@ public class LoopFloor : MonoBehaviour
            
             Instantiate(floor, newPos, Quaternion.Euler(0f,0f,90f));
 
-            Destroy(this.gameObject.transform.root.gameObject, 5);
+            Destroy(this.gameObject.transform.root.gameObject, 15);
             check = true;
             if (cossCheck == true)
             {

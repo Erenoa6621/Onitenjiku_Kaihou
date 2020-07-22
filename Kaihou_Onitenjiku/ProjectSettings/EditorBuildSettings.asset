@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Clear.unity
     guid: 4ec91fb74eda6ee48b7cd0f452fdf0a8
+  - enabled: 1
+    path: Assets/Scenes/StageSelect.unity
+    guid: 54a97ded1b4d3a4498010b54f5ac0547
   m_configObjects: {}
