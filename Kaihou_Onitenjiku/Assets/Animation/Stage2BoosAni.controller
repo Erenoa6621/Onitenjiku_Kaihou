@@ -9,8 +9,8 @@ AnimatorController:
   m_Name: Stage2BoosAni
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: x
-    m_Type: 1
+  - m_Name: BossStert
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -65,7 +65,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 1102861735553633928}
-    m_Position: {x: 216, y: 36, z: 0}
+    m_Position: {x: 216, y: 12, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
