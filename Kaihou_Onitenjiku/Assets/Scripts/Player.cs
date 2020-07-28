@@ -98,21 +98,28 @@ public class Player : MonoBehaviour
 
 
 
-            if (BossStart == true && nowSpeed > 18 && Input.GetKey(KeyCode.S))
+            if (BossStart == true && nowSpeed > 18 && Input.GetKeyDown(KeyCode.S))
             {
                 ult = true;
                 playerAni.SetTrigger("UltIn");
                 kuronoaAni.SetTrigger("Ult");
-                nowSpeed = 10;
+               // nowSpeed = 10;
             }
             else
             {
                 ult = false;
 
             }
-            if (Input.GetKeyDown(KeyCode.A))
+
+            if (Input.GetKey(KeyCode.A))
             {
-                playerAni.SetTrigger("Atack");
+                playerAni.SetBool("Atack",true);
+                nowSpeed -= 0.5f * Time.deltaTime;
+            }
+            else
+            {
+                playerAni.SetBool("Atack", false);
+
             }
         }
     }
@@ -143,6 +150,7 @@ public class Player : MonoBehaviour
         {
             missileDamege = false;
         }
+      
 
     }
     private void OnTriggerEnter(Collider other)
