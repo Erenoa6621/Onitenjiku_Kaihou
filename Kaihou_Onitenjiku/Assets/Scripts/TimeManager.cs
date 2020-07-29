@@ -15,6 +15,8 @@ public class TimeManager : MonoBehaviour
 	private Text timerText;
 	private bool Pouse;
 	public GameObject PCon;
+	public GameObject EndCon;
+	private bool end;
 	void Start()
 	{
 		minute = 0;
@@ -26,7 +28,8 @@ public class TimeManager : MonoBehaviour
 	void Update()
 	{
 		Pouse = PCon.GetComponent<PouseCon>().Pouse;
-		if (Pouse == false)
+		end = EndCon.GetComponent<BossLife>().end;
+		if (Pouse == false && end == false)
 		{
 			seconds += Time.deltaTime;
 			if (seconds >= 60f)
@@ -39,11 +42,17 @@ public class TimeManager : MonoBehaviour
 			{
 				timerText.text = minute.ToString("00") + ":" + ((int)seconds).ToString("00");
 			}
+			oldSeconds = seconds;
+
+			
+			
+		}
+		if (end == true)
+		{
 			PlayerPrefs.SetFloat("Minute", minute);
 			PlayerPrefs.Save();
 			PlayerPrefs.SetFloat("Second", seconds);
 			PlayerPrefs.Save();
-			oldSeconds = seconds;
 		}
 	}
 }

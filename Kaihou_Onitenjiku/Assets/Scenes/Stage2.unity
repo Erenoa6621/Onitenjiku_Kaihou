@@ -5197,6 +5197,11 @@ PrefabInstance:
       propertyPath: PCon
       value: 
       objectReference: {fileID: 1625391466}
+    - target: {fileID: 6672476383666150558, guid: fd7ac547c83506b4790106aeeff36b12,
+        type: 3}
+      propertyPath: bossTipe
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6672476384566269521, guid: fd7ac547c83506b4790106aeeff36b12,
         type: 3}
       propertyPath: Player
@@ -5236,7 +5241,7 @@ PrefabInstance:
     - target: {fileID: 4715516343544241989, guid: fd7ac547c83506b4790106aeeff36b12,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4295715105176751034, guid: fd7ac547c83506b4790106aeeff36b12,
         type: 3}

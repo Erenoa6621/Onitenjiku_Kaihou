@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     public Animator kuronoaAni;
     private bool Pouse;
     public GameObject PCon;
+    public GameObject bossLife;
+    private bool end;
     void Start()
     {
         rb = player.GetComponent<Rigidbody>();
@@ -44,7 +46,8 @@ public class Player : MonoBehaviour
     void Update()
     {
         Pouse = PCon.GetComponent<PouseCon>().Pouse;
-        if (Pouse == false)
+        end = bossLife.GetComponent<BossLife>().end;
+        if (Pouse == false &&  end == false)
         {
             enemyDamege = enemyCon.GetComponent<EnemyCon>().playerDamede;
             blockDamege = block.GetComponent<Enemy>().damegi;
@@ -121,6 +124,10 @@ public class Player : MonoBehaviour
                 playerAni.SetBool("Atack", false);
 
             }
+        }
+        if (end == true)
+        {
+            playerAni.SetTrigger("End");
         }
     }
     static async void DilayKuronoa(bool blur,GameObject Kuronoa)

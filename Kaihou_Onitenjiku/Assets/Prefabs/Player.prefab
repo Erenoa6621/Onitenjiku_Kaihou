@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 10
   damegiSpeed: 3
-  junpSpeed: 1000
+  junpSpeed: 10
   playerPos: {fileID: 0}
   enemyCon: {fileID: 0}
   player: {fileID: 754483931133608416}
@@ -187,6 +187,7 @@ MonoBehaviour:
   Kuronoa: {fileID: 2913850513661865273}
   kuronoaAni: {fileID: 151517366194700957}
   PCon: {fileID: 0}
+  bossLife: {fileID: 0}
 --- !u!54 &754483931133608420
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5285,7 +5286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 754483931133608416}
-  Count: {fileID: 5688725132613705306, guid: 8c1566843927ca84eb69c6d3340cdd21, type: 3}
+  Count: {fileID: 5786075910442234107, guid: 0730f35381982f841b14ecc7371595f2, type: 3}
   Atack: 0
 --- !u!95 &3283146004931199001
 Animator:

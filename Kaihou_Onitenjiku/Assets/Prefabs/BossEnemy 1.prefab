@@ -277,10 +277,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc181f26b205bc54dad52e22c4bc5602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossMaxLife: 0
-  Meter: {fileID: 0}
+  bossMaxLife: 300
+  LifeMeter: {fileID: 3542122426926333329}
   Player: {fileID: 0}
   damegi: {fileID: 0}
+  end: 0
 --- !u!54 &3807119207577593492
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -348,8 +349,11 @@ MonoBehaviour:
   bossAni: {fileID: 8784953570122606322}
   Slash: 0
   fire: 0
+  sinugayoi: 0
+  bossTipe: 0
   randomCountMax: 0
   PCon: {fileID: 0}
+  bossLife: {fileID: 0}
 --- !u!1 &2193448466514501274
 GameObject:
   m_ObjectHideFlags: 0

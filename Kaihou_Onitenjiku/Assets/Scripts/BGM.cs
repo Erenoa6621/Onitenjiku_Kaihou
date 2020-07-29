@@ -26,6 +26,10 @@ public class BGM : MonoBehaviour
         {
             check = Con.GetComponent<BGMCon>().Boss;
         }
+        else if (Type == 2)
+        {
+            check = Con.GetComponent<BGMCon>().Clear;
+        }
         if (check == true && count == 0)
         {
             audioSource.Play();

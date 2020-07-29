@@ -19,6 +19,9 @@ public class MoveBoss : MonoBehaviour
     private bool countdouwnTrigger;
     private bool Pouse;
     public GameObject PCon;
+    public GameObject bossLife;
+    private bool end;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +32,13 @@ public class MoveBoss : MonoBehaviour
     void Update()
     {
         Pouse = PCon.GetComponent<PouseCon>().Pouse;
-        if (Pouse == false)
+        end = bossLife.GetComponent<BossLife>().end;
+        if (Pouse == false && end == false)
         {
             start = playerPos.GetComponent<BossStartTrigger>().bossStart;
             pos = this.gameObject.transform.position;
             speed = mainPlayer.GetComponent<Player>().nowSpeed;
+
             int randomCount = Random.Range(1, randomCountMax);
             if (start == true)
             {
@@ -71,6 +76,7 @@ public class MoveBoss : MonoBehaviour
             {
                 fire = false;
                 Slash = false;
+                sinugayoi = false;
                 countdouwn++;
                 if (countdouwn == 60)
                 {
@@ -78,6 +84,10 @@ public class MoveBoss : MonoBehaviour
                     countdouwnTrigger = false;
                 }
             }
+        }
+        else if (end == true)
+        {
+            bossAni.SetTrigger("End");
         }
     }
 }

@@ -18,11 +18,12 @@ public class UltIn : MonoBehaviour
     void Update()
     {
         UltOn = PlayerUlt.GetComponent<Player>().ult;
-        this.gameObject.transform.position = new Vector3(BossPos.transform.position.x, -0.6f, 0);
+        this.gameObject.transform.position = new Vector3(BossPos.transform.position.x, BossPos.transform.position.y -0.5f, 0);
 
         if (UltOn == true)
         {
             Instantiate(Ult, this.gameObject.transform.position, Quaternion.identity);
+            //Destroy(Ult, 10f);
         }
     }
 }
