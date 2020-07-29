@@ -12,6 +12,8 @@ public class MoveBoss : MonoBehaviour
     private float speed;
     public bool Slash;
     public bool fire;
+    public bool sinugayoi;
+    public int bossTipe;
     public int randomCountMax;
     private int countdouwn = 0;
     private bool countdouwnTrigger;
@@ -52,10 +54,17 @@ public class MoveBoss : MonoBehaviour
                     Slash = true;
                     bossAni.SetTrigger("Atack1");
                 }
+                else if (randomCount == 3 && bossTipe == 1)
+                {
+                    sinugayoi = true;
+                    countdouwnTrigger = true;
+                    bossAni.SetTrigger("Atack3");
+                }
                 else
                 {
                     fire = false;
                     Slash = false;
+                    sinugayoi = false;
                 }
             }
             else
