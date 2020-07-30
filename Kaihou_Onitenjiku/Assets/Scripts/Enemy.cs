@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public Animator enemyAni;
     private Collider col;
     private AudioSource audioSource;
+    private bool ataxtCheck;
   //  public bool cameraIn;
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         if (damegi == true)
         {
             time++;
@@ -36,6 +38,14 @@ public class Enemy : MonoBehaviour
                 //audioSource.Play();
             }
         }
+        if (ataxtCheck == true)
+        {
+            enemyAni.SetTrigger("EnemyAttck");
+            audioSource.Play();
+            accel = true;
+        }
+
+
     }
     void OnTriggerEnter(Collider other)
     {

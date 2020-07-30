@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -29,6 +30,12 @@ public class Player : MonoBehaviour
     public GameObject BlockCon;
     private int junpCount;
     public GameObject Kuronoa;
+    public Animator kuronoaAni;
+    private bool Pouse;
+    public GameObject PCon;
+    public GameObject bossLife;
+    private bool end;
+    private int ultCount;
     void Start()
     {
         rb = player.GetComponent<Rigidbody>();
@@ -39,74 +46,98 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        enemyDamege = enemyCon.GetComponent<EnemyCon>().playerDamede;
-        blockDamege = block.GetComponent<Enemy>().damegi;
-        accel = enemyCon.GetComponent<EnemyCon>().playeraccel;
-        BossStart = bossSrtartTriger.GetComponent<BossStartTrigger>().bossStart;
-        blockDamege = BlockCon.GetComponent<BlockCon>().playerDamede;
-    
-        if (enemyDamege == true || blockDamege == true)
+        Pouse = PCon.GetComponent<PouseCon>().Pouse;
+        end = bossLife.GetComponent<BossLife>().end;
+        if (Pouse == false &&  end == false)
         {
-            nowSpeed = damegiSpeed;
-            playerAni.SetTrigger("Damege");
-        }
-        if (nowSpeed < 5)
-        {
-            nowSpeed = 5;
-           
-        }
-        if (nowSpeed > 20)
-        {
-            nowSpeed = 20;
-        }
+            enemyDamege = enemyCon.GetComponent<EnemyCon>().playerDamede;
+            blockDamege = block.GetComponent<Enemy>().damegi;
+            accel = enemyCon.GetComponent<EnemyCon>().playeraccel;
+            BossStart = bossSrtartTriger.GetComponent<BossStartTrigger>().bossStart;
+            blockDamege = BlockCon.GetComponent<BlockCon>().playerDamede;
 
-     
+            if (enemyDamege == true || blockDamege == true)
+            {
+                nowSpeed = damegiSpeed;
+                playerAni.SetTrigger("Damege");
+            }
+            if (nowSpeed < 5)
+            {
+                nowSpeed = 5;
 
-        nowSpeed -= 0.3f * Time.deltaTime;
-        transform.position += transform.right * nowSpeed * Time.deltaTime;
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
-        if (Input.GetKeyDown(KeyCode.Space) && junpCheck == true)
-        {
-            rb.velocity = new Vector3(0.0f, junpSpeed, 0.0f);
-            playerAni.SetTrigger("Junp");
-            playerAni.SetBool("JunpEnd", false);
-            junpCheck = false;
-        }
-        if (accel == true)
-        {
-            nowSpeed += 2;
-        }
-
-        if (nowSpeed > 18)
-        {
-            blur = true;
-            Kuronoa.gameObject.SetActive(true);
-
-        }
-        else
-        {
-            blur = false;
-            Kuronoa.gameObject.SetActive(false);
-        }
-        
+            }
+            if (nowSpeed > 20)
+            {
+                nowSpeed = 20;
+            }
 
 
 
-        if (BossStart == true && nowSpeed > 18 && Input.GetKey(KeyCode.S))
-        {
-            ult = true;
-          
-            nowSpeed = 10;
+            nowSpeed -= 0.3f * Time.deltaTime;
+            transform.position += transform.right * nowSpeed * Time.deltaTime;
+            transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+            if (Input.GetKeyDown(KeyCode.Space) && junpCheck == true)
+            {
+                rb.velocity = new Vector3(0.0f, junpSpeed, 0.0f);
+                playerAni.SetTrigger("Junp");
+                playerAni.SetBool("JunpEnd", false);
+                junpCheck = false;
+            }
+            if (accel == true)
+            {
+                nowSpeed += 2;
+            }
+
+            if (nowSpeed > 18)
+            {
+                blur = true;
+                Kuronoa.gameObject.SetActive(true);
+
+            }
+            else
+            {
+                DilayKuronoa(blur, Kuronoa);
+            }
+
+
+
+
+            if (BossStart == true && nowSpeed > 18 && Input.GetKeyDown(KeyCode.S) && ultCount > 60)
+            {
+                ult = true;
+                playerAni.SetTrigger("UltIn");
+                kuronoaAni.SetTrigger("Ult");
+                ultCount = 0;
+               // nowSpeed = 10;
+            }
+            else
+            {
+                ult = false;
+                ultCount++;
+            }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                playerAni.SetBool("Atack",true);
+                nowSpeed -= 0.5f * Time.deltaTime;
+            }
+            else
+            {
+                playerAni.SetBool("Atack", false);
+
+            }
         }
-        else 
+        if (end == true)
         {
+            playerAni.SetTrigger("End");
             ult = false;
-           
         }
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            playerAni.SetTrigger("Atack");
-        }
+    }
+    static async void DilayKuronoa(bool blur,GameObject Kuronoa)
+    {
+        blur = false;
+        await Task.Delay(1000);
+        Kuronoa.gameObject.SetActive(false);
     }
     void OnCollisionEnter(Collision other)
     {
@@ -125,10 +156,17 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
             playerAni.SetTrigger("Damege");
         }
+
+        if (other.gameObject.tag == "Tuta")
+        {
+            nowSpeed -= 5f;
+        }
+
         else
         {
             missileDamege = false;
         }
+      
 
     }
     private void OnTriggerEnter(Collider other)
@@ -142,6 +180,13 @@ public class Player : MonoBehaviour
                 Destroy(other.gameObject);
             }
           
+        }
+        if (other.gameObject.tag == "Tuta")
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                nowSpeed += 3;
+            }
         }
         else
         {

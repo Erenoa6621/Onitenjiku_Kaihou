@@ -12,6 +12,7 @@ public class AttackExit : MonoBehaviour
     public GameObject Boss;
     public int count;
     private bool lag;
+    private int type;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +24,7 @@ public class AttackExit : MonoBehaviour
     {
         bossVs = vsStart.GetComponent<BossStartTrigger>().bossStart;
         trigger = Boss.GetComponent<MoveBoss>().fire;
-       
+        type = Boss.GetComponent<MoveBoss>().bossTipe;
 
         if (bossVs == true)
         {
