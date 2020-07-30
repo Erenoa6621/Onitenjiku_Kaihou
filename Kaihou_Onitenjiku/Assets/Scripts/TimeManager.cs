@@ -17,6 +17,7 @@ public class TimeManager : MonoBehaviour
 	public GameObject PCon;
 	public GameObject EndCon;
 	private bool end;
+	public int Type;
 	void Start()
 	{
 		minute = 0;
@@ -47,11 +48,19 @@ public class TimeManager : MonoBehaviour
 			
 			
 		}
-		if (end == true)
+
+		if (end == true && Type == 0)
 		{
 			PlayerPrefs.SetFloat("Minute", minute);
 			PlayerPrefs.Save();
 			PlayerPrefs.SetFloat("Second", seconds);
+			PlayerPrefs.Save();
+		}
+		if (end == true && Type == 1)
+		{
+			PlayerPrefs.SetFloat("Minute2", minute);
+			PlayerPrefs.Save();
+			PlayerPrefs.SetFloat("Second2", seconds);
 			PlayerPrefs.Save();
 		}
 	}

@@ -9,9 +9,10 @@ public class UltIn : MonoBehaviour
     public GameObject PlayerUlt;
     private bool UltOn;
     public GameObject Ult;
+    public AudioSource audioSource;
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -23,6 +24,7 @@ public class UltIn : MonoBehaviour
         if (UltOn == true)
         {
             Instantiate(Ult, this.gameObject.transform.position, Quaternion.identity);
+            audioSource.Play();
             //Destroy(Ult, 10f);
         }
     }

@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     public GameObject PCon;
     public GameObject bossLife;
     private bool end;
+    private int ultCount;
     void Start()
     {
         rb = player.GetComponent<Rigidbody>();
@@ -101,17 +102,18 @@ public class Player : MonoBehaviour
 
 
 
-            if (BossStart == true && nowSpeed > 18 && Input.GetKeyDown(KeyCode.S))
+            if (BossStart == true && nowSpeed > 18 && Input.GetKeyDown(KeyCode.S) && ultCount > 60)
             {
                 ult = true;
                 playerAni.SetTrigger("UltIn");
                 kuronoaAni.SetTrigger("Ult");
+                ultCount = 0;
                // nowSpeed = 10;
             }
             else
             {
                 ult = false;
-
+                ultCount++;
             }
 
             if (Input.GetKey(KeyCode.A))
@@ -128,6 +130,7 @@ public class Player : MonoBehaviour
         if (end == true)
         {
             playerAni.SetTrigger("End");
+            ult = false;
         }
     }
     static async void DilayKuronoa(bool blur,GameObject Kuronoa)
@@ -153,6 +156,12 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
             playerAni.SetTrigger("Damege");
         }
+
+        if (other.gameObject.tag == "Tuta")
+        {
+            nowSpeed -= 5f;
+        }
+
         else
         {
             missileDamege = false;
@@ -171,6 +180,13 @@ public class Player : MonoBehaviour
                 Destroy(other.gameObject);
             }
           
+        }
+        if (other.gameObject.tag == "Tuta")
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                nowSpeed += 3;
+            }
         }
         else
         {
