@@ -9,7 +9,7 @@ public class UltIn : MonoBehaviour
     public GameObject PlayerUlt;
     private bool UltOn;
     public GameObject Ult;
-    public AudioSource audioSource;
+    AudioSource audioSource;
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -19,7 +19,7 @@ public class UltIn : MonoBehaviour
     void Update()
     {
         UltOn = PlayerUlt.GetComponent<Player>().ult;
-        this.gameObject.transform.position = new Vector3(BossPos.transform.position.x, BossPos.transform.position.y -0.5f, 0);
+        this.gameObject.transform.position = new Vector3(this.transform.position.x, BossPos.transform.position.y -0.5f, 0);
 
         if (UltOn == true)
         {

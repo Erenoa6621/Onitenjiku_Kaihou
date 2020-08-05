@@ -14,6 +14,7 @@ public class TutaCon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        nowPos.x += 5 * Time.deltaTime;
         transform.position = nowPos;
 
     }

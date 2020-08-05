@@ -12,11 +12,13 @@ public class Enemy : MonoBehaviour
     private Collider col;
     private AudioSource audioSource;
     private bool ataxtCheck;
+    public bool ExFlag;
   //  public bool cameraIn;
     // Start is called before the first frame update
     void Start()
     {
         damegi = false;
+        ExFlag = false;
         col = this.gameObject.GetComponent<Collider>();
         audioSource = GetComponent<AudioSource>();
     }
@@ -60,6 +62,7 @@ public class Enemy : MonoBehaviour
                 enemyAni.SetTrigger("EnemyAttck");
                 audioSource.Play();
                 accel = true;
+                ExFlag = true;
                 // Destroy(col);
             }
         }

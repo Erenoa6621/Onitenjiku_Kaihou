@@ -67,7 +67,7 @@ public class LoopFloor : MonoBehaviour
                         counter = 0;
                     }
                 }
-                if (randomFloor == 2)
+                /*if (randomFloor == 2)
                 {
                     Instantiate(subFloor, new Vector3(nowPos.x+30, nowPos.y + 10, nowPos.z), Quaternion.identity);
                     counterCheck = true;
@@ -76,7 +76,7 @@ public class LoopFloor : MonoBehaviour
                         BossAni.SetTrigger("BossStay2");
                         counter = 0;
                     }
-                }
+                }*/
 
                 if (counterCheck == true)
                 {

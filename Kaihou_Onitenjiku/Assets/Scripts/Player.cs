@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
 
             if (enemyDamege == true || blockDamege == true)
             {
-                nowSpeed = damegiSpeed;
+                nowSpeed -= damegiSpeed;
                 playerAni.SetTrigger("Damege");
             }
             if (nowSpeed < 5)
@@ -156,15 +156,20 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
             playerAni.SetTrigger("Damege");
         }
+        else
+        {
+            missileDamege = false;
+        }
 
         if (other.gameObject.tag == "Tuta")
         {
             nowSpeed -= 5f;
         }
+       
 
-        else
+        if (other.gameObject.tag == "Enemy")
         {
-            missileDamege = false;
+            nowSpeed -= 5f;
         }
       
 
@@ -181,6 +186,18 @@ public class Player : MonoBehaviour
             }
           
         }
+
+     /*   if (other.gameObject.tag == "Enemy")
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                missileCounter = true;
+                nowSpeed += 3;
+                Destroy(other.gameObject);
+            }
+
+        }*/
+
         if (other.gameObject.tag == "Tuta")
         {
             if (Input.GetKey(KeyCode.A))
